@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammatikkveien mot A2 – Norsk for voksne</title>
+<meta name="description" content="Interaktivt opplæringsprogram i norsk grammatikk mot nivå A2 (CEFR). For voksne deltakere.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   GRAMMATIKKVEIEN MOT A2
+   Design: MBO-palett (Marine #003057, Teal #005F73, Amber #EE9B00)
+   Alle fargepar oppfyller WCAG 2.1 AA (4.5:1 for normal tekst)
+   ========================================================== */
+:root{
+  --marine:#003057;
+  --marine-soft:#0d4571;
+  --teal:#005F73;
+  --teal-dark:#004a5a;
+  --teal-tint:#E3F0F2;
+  --amber:#EE9B00;          /* kun mørk tekst oppå! */
+  --amber-tint:#FCEFD8;
+  --bg:#F4F8FA;
+  --card:#FFFFFF;
+  --ink:#16293A;
+  --muted:#4E6172;          /* 7.2:1 på hvit */
+  --line:#D7E2E8;
+  --success:#1B6E3C;        /* 5.9:1 på hvit */
+  --success-tint:#E6F4EA;
+  --error:#B3261E;          /* 6.6:1 på hvit */
+  --error-tint:#FBEAE9;
+  --focus:#0B63CE;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(0,48,87,.06),0 4px 14px rgba(0,48,87,.08);
+  --font:'Atkinson Hyperlegible',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+body{
+  margin:0;font-family:var(--font);background:var(--bg);color:var(--ink);
+  font-size:1.0625rem;line-height:1.6;
+}
+/* ---------- Hopp til innhold (UU) ---------- */
+.skip-link{
+  position:absolute;left:-999px;top:0;background:var(--marine);color:#fff;
+  padding:.75rem 1.25rem;border-radius:0 0 var(--radius) 0;z-index:100;font-weight:700;
+}
+.skip-link:focus{left:0}
+/* ---------- Fokusmarkering (UU) ---------- */
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+/* ---------- Topplinje ---------- */
+header.app-header{
+  background:var(--marine);color:#fff;
+  padding:.65rem 1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+  position:sticky;top:0;z-index:50;box-shadow:var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:.6rem;min-width:0}
+.brand-logo{
+  width:40px;height:40px;border-radius:10px;background:var(--amber);color:var(--marine);
+  display:grid;place-items:center;font-weight:700;font-size:1.15rem;flex-shrink:0;
+}
+.brand h1{font-size:1.1rem;margin:0;line-height:1.2;font-weight:700}
+.brand .undertittel{font-size:.78rem;opacity:.85;display:block;font-weight:400}
+/* ---------- Scoreboard ---------- */
+.scoreboard{
+  margin-left:auto;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;
+}
+.score-chip{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;padding:.3rem .85rem;font-size:.9rem;font-weight:700;
+  display:flex;align-items:center;gap:.4rem;color:#fff;
+}
+.score-chip .ikon{font-size:1.05rem}
+.score-chip.amber{background:var(--amber);color:var(--marine);border-color:var(--amber)}
+/* ---------- Hovedoppsett ---------- */
+.layout{display:grid;grid-template-columns:300px 1fr;gap:1.5rem;max-width:1240px;margin:1.5rem auto;padding:0 1rem}
+@media (max-width:900px){.layout{grid-template-columns:1fr;margin-top:1rem}}
+/* ---------- Navigasjon ---------- */
+nav.tema-nav{align-self:start}
+@media (min-width:901px){nav.tema-nav{position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;padding-right:.25rem}}
+.nav-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}
+.nav-card h2{font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:.25rem 0 .75rem}
+.nav-liste{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem}
+.nav-knapp{
+  width:100%;display:flex;align-items:center;gap:.65rem;text-align:left;
+  background:none;border:none;border-radius:10px;padding:.6rem .65rem;cursor:pointer;
+  font:inherit;font-size:.97rem;color:var(--ink);min-height:44px;
+}
+.nav-knapp:hover{background:var(--teal-tint)}
+.nav-knapp[aria-current="page"]{background:var(--teal);color:#fff;font-weight:700}
+.nav-knapp[aria-current="page"] .ring-tekst{fill:#fff}
+.nav-knapp .nav-ikon{font-size:1.2rem;width:1.5rem;text-align:center;flex-shrink:0}
+.nav-knapp .nav-tittel{flex:1;min-width:0}
+/* fremdriftsring */
+.ring{flex-shrink:0}
+.ring-bak{stroke:var(--line);fill:none}
+.nav-knapp[aria-current="page"] .ring-bak{stroke:rgba(255,255,255,.3)}
+.ring-frem{stroke:var(--amber);fill:none;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .4s ease}
+.ring-tekst{font-size:9px;font-weight:700;fill:var(--muted);text-anchor:middle;dominant-baseline:central}
+.nav-knapp.fullfort .ring-frem{stroke:var(--success)}
+/* mobilmeny */
+.nav-toggle{display:none}
+@media (max-width:900px){
+  .nav-toggle{
+    display:flex;align-items:center;gap:.5rem;width:100%;justify-content:space-between;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:.8rem 1rem;font:inherit;font-weight:700;cursor:pointer;min-height:48px;color:var(--ink);
+  }
+  .nav-card{display:none;margin-top:.5rem}
+  .nav-card.open{display:block}
+}
+/* ---------- Hovedinnhold ---------- */
+main{min-width:0}
+.kort{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem}
+.kort h2{margin-top:0;color:var(--marine);font-size:1.5rem;line-height:1.25}
+.kort h3{color:var(--teal);font-size:1.15rem;margin:1.5rem 0 .5rem}
+.eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);font-weight:700;margin:0 0 .25rem}
+/* ---------- Hjem / dashbord ---------- */
+.hero{
+  background:linear-gradient(135deg,var(--marine) 0%,var(--teal) 100%);
+  color:#fff;border-radius:var(--radius);padding:2rem 1.75rem;margin-bottom:1.25rem;box-shadow:var(--shadow);
+}
+.hero h2{margin:0 0 .5rem;font-size:1.7rem;color:#fff}
+.hero p{margin:0;max-width:56ch;font-size:1.05rem;opacity:.95}
+.hero .hero-knapp{margin-top:1.25rem}
+.tema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.tema-kort{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem;cursor:pointer;text-align:left;font:inherit;color:var(--ink);
+  display:flex;flex-direction:column;gap:.5rem;min-height:44px;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.tema-kort:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--teal)}
+.tema-kort .tk-topp{display:flex;align-items:center;gap:.6rem}
+.tema-kort .tk-ikon{font-size:1.6rem}
+.tema-kort .tk-tittel{font-weight:700;color:var(--marine);font-size:1.05rem}
+.tema-kort .tk-besk{font-size:.9rem;color:var(--muted);margin:0}
+.fremdriftslinje{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:auto}
+.fremdriftslinje>span{display:block;height:100%;background:var(--amber);border-radius:99px;transition:width .4s ease}
+.tema-kort.mestret .fremdriftslinje>span{background:var(--success)}
+.tk-status{font-size:.8rem;font-weight:700;color:var(--muted)}
+.tk-status.mestret{color:var(--success)}
+/* ---------- Leksjon ---------- */
+.eksempelboks{
+  background:var(--teal-tint);border-left:5px solid var(--teal);
+  border-radius:0 10px 10px 0;padding:.9rem 1.1rem;margin:.9rem 0;
+}
+.eksempelboks p{margin:.25rem 0}
+.regelboks{
+  background:var(--amber-tint);border-left:5px solid var(--amber);
+  border-radius:0 10px 10px 0;padding:.9rem 1.1rem;margin:.9rem 0;
+}
+.regelboks strong:first-child{color:var(--marine)}
+table.gtab{width:100%;border-collapse:collapse;margin:.75rem 0;font-size:1rem}
+table.gtab caption{text-align:left;font-weight:700;color:var(--marine);padding-bottom:.4rem}
+table.gtab th{background:var(--marine);color:#fff;text-align:left;padding:.55rem .7rem;font-size:.92rem}
+table.gtab td{border:1px solid var(--line);padding:.5rem .7rem;background:#fff}
+table.gtab tr:nth-child(even) td{background:#F7FAFC}
+.uth{color:var(--teal);font-weight:700}
+.uth2{background:var(--amber-tint);padding:0 .2em;border-radius:4px;font-weight:700}
+/* ---------- Oppgaver ---------- */
+.oppgave-omrade{margin-top:1rem}
+.oppgave-status{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:.75rem}
+.oppgave-teller{font-weight:700;color:var(--muted);font-size:.95rem}
+.prikk-rad{display:flex;gap:.4rem;flex-wrap:wrap}
+.prikk{width:12px;height:12px;border-radius:50%;background:var(--line)}
+.prikk.aktiv{background:var(--teal);transform:scale(1.25)}
+.prikk.riktig{background:var(--success)}
+.prikk.feil{background:var(--error)}
+.sporsmal{font-size:1.2rem;font-weight:700;color:var(--ink);margin:.5rem 0 1rem;line-height:1.5}
+.sporsmal .luke{
+  display:inline-block;min-width:4.5ch;border-bottom:3px solid var(--teal);
+  text-align:center;color:var(--teal);font-style:normal;
+}
+.hint{color:var(--muted);font-size:.95rem;font-weight:400}
+/* flervalg */
+.alt-liste{display:flex;flex-direction:column;gap:.6rem;margin:0;padding:0;list-style:none}
+.alt-knapp{
+  width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;
+  padding:.8rem 1rem;font:inherit;font-size:1.05rem;cursor:pointer;min-height:48px;
+  display:flex;align-items:center;gap:.7rem;color:var(--ink);
+}
+.alt-knapp:hover:not(:disabled){border-color:var(--teal);background:var(--teal-tint)}
+.alt-knapp .alt-bokstav{
+  width:30px;height:30px;border-radius:50%;background:var(--teal-tint);color:var(--teal);
+  display:grid;place-items:center;font-weight:700;flex-shrink:0;font-size:.9rem;
+}
+.alt-knapp.valgt-riktig{border-color:var(--success);background:var(--success-tint)}
+.alt-knapp.valgt-riktig .alt-bokstav{background:var(--success);color:#fff}
+.alt-knapp.valgt-feil{border-color:var(--error);background:var(--error-tint)}
+.alt-knapp.valgt-feil .alt-bokstav{background:var(--error);color:#fff}
+.alt-knapp:disabled{cursor:default;opacity:.85}
+/* fyll inn */
+.fyll-rad{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.fyll-input{
+  font:inherit;font-size:1.1rem;padding:.65rem .9rem;border:2px solid var(--line);
+  border-radius:10px;min-width:200px;flex:1;max-width:320px;color:var(--ink);
+}
+.fyll-input:focus{border-color:var(--teal)}
+.fyll-input.riktig{border-color:var(--success);background:var(--success-tint)}
+.fyll-input.feil{border-color:var(--error);background:var(--error-tint)}
+/* ordrekkefølge */
+.ordre-svar{
+  min-height:60px;border:2px dashed var(--teal);border-radius:12px;background:var(--teal-tint);
+  padding:.6rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:.75rem;
+}
+.ordre-svar.tom::before{content:"Trykk på ordene under for å bygge setningen.";color:var(--muted);font-size:.95rem}
+.ordre-bank{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem}
+.ord-brikke{
+  font:inherit;font-size:1.05rem;font-weight:700;background:#fff;color:var(--marine);
+  border:2px solid var(--marine);border-radius:10px;padding:.5rem .9rem;cursor:pointer;min-height:44px;
+}
+.ord-brikke:hover:not(:disabled){background:var(--marine);color:#fff}
+.ord-brikke:disabled{opacity:.35;cursor:default}
+.ord-brikke.i-svar{background:var(--teal);border-color:var(--teal);color:#fff}
+.ord-brikke.i-svar:hover{background:var(--teal-dark)}
+/* knapper */
+.knapp{
+  font:inherit;font-weight:700;font-size:1.05rem;border:none;border-radius:12px;
+  padding:.75rem 1.5rem;cursor:pointer;min-height:48px;display:inline-flex;align-items:center;gap:.5rem;
+}
+.knapp-primar{background:var(--teal);color:#fff}
+.knapp-primar:hover:not(:disabled){background:var(--teal-dark)}
+.knapp-primar:disabled{background:var(--line);color:var(--muted);cursor:default}
+.knapp-sekundar{background:#fff;color:var(--teal);border:2px solid var(--teal)}
+.knapp-sekundar:hover{background:var(--teal-tint)}
+.knapp-amber{background:var(--amber);color:var(--marine)}
+.knapp-amber:hover{background:#d98d00}
+.knapp-liten{font-size:.92rem;padding:.45rem .9rem;min-height:40px}
+.knapp-rad{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+/* tilbakemelding */
+.tilbakemelding{
+  border-radius:12px;padding:1rem 1.15rem;margin-top:1rem;font-size:1.05rem;display:none;
+}
+.tilbakemelding.vis{display:block}
+.tilbakemelding.riktig{background:var(--success-tint);border:2px solid var(--success);color:#11502B}
+.tilbakemelding.feil{background:var(--error-tint);border:2px solid var(--error);color:#7E1B15}
+.tilbakemelding.provigjen{background:var(--amber-tint);border:2px solid var(--amber);color:#5C3D00}
+.tilbakemelding .tm-tittel{font-weight:700;font-size:1.1rem;display:block;margin-bottom:.25rem}
+.tilbakemelding .tm-forklaring{margin:.4rem 0 0;font-size:.98rem}
+/* fullført-skjerm */
+.fullfort-skjerm{text-align:center;padding:2rem 1rem}
+.fullfort-skjerm .stor-ikon{font-size:4rem;display:block;margin-bottom:.5rem}
+.fullfort-skjerm h3{color:var(--marine);font-size:1.6rem;margin:.25rem 0}
+.resultat-tall{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0}
+.resultat-boks{background:var(--bg);border-radius:12px;padding:1rem 1.5rem;min-width:120px}
+.resultat-boks .rt-tall{font-size:2rem;font-weight:700;color:var(--teal);display:block}
+.resultat-boks .rt-navn{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+/* min fremgang */
+.fremgang-tabell{width:100%;border-collapse:collapse;font-size:.98rem}
+.fremgang-tabell th{background:var(--marine);color:#fff;text-align:left;padding:.6rem .7rem}
+.fremgang-tabell td{border-bottom:1px solid var(--line);padding:.6rem .7rem;vertical-align:middle}
+.status-merke{display:inline-block;padding:.15rem .7rem;border-radius:99px;font-size:.82rem;font-weight:700}
+.status-merke.ikke{background:var(--line);color:var(--muted)}
+.status-merke.pabegynt{background:var(--amber-tint);color:#5C3D00}
+.status-merke.fullfort{background:var(--teal-tint);color:var(--teal)}
+.status-merke.mestret{background:var(--success-tint);color:var(--success)}
+.niva-banner{
+  display:flex;align-items:center;gap:1rem;background:var(--amber-tint);
+  border:2px solid var(--amber);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.25rem;flex-wrap:wrap;
+}
+.niva-banner .nb-ikon{font-size:2.4rem}
+.niva-banner .nb-navn{font-weight:700;color:var(--marine);font-size:1.2rem}
+.niva-banner .nb-info{color:#5C3D00;font-size:.95rem}
+/* feiring */
+@keyframes hopp{0%,100%{transform:translateY(0)}40%{transform:translateY(-14px)}}
+.feir{display:inline-block;animation:hopp .7s ease 2}
+footer.app-footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:560px){
+  .kort{padding:1.1rem}
+  .sporsmal{font-size:1.1rem}
+  .scoreboard{width:100%;margin-left:0;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#hovedinnhold">Hopp til innholdet</a>
+
+<header class="app-header">
+  <div class="brand">
+    <div class="brand-logo" aria-hidden="true">A2</div>
+    <h1>Grammatikkveien mot A2
+      <span class="undertittel">Norsk grammatikk for voksne · CEFR A2</span>
+    </h1>
+  </div>
+  <div class="scoreboard" role="group" aria-label="Poengtavle">
+    <span class="score-chip amber" id="chip-poeng" title="Poengsum"><span class="ikon" aria-hidden="true">⭐</span><span id="poeng-tall">0</span><span class="sr-only">poeng</span></span>
+    <span class="score-chip" id="chip-streak" title="Riktige svar på rad"><span class="ikon" aria-hidden="true">🔥</span><span id="streak-tall">0</span><span class="sr-only">riktige på rad</span></span>
+    <span class="score-chip" id="chip-niva" title="Ditt nivå"><span class="ikon" aria-hidden="true">🎓</span><span id="niva-navn">Nybegynner</span></span>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="tema-nav" aria-label="Grammatikktemaer">
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-card">
+      <span>📚 Velg tema</span><span aria-hidden="true">▾</span>
+    </button>
+    <div class="nav-card" id="nav-card">
+      <h2>Meny</h2>
+      <ul class="nav-liste" id="nav-faste"></ul>
+      <h2>Grammatikktemaer</h2>
+      <ul class="nav-liste" id="nav-temaer"></ul>
+    </div>
+  </nav>
+
+  <main id="hovedinnhold" tabindex="-1">
+    <div id="visning"></div>
+  </main>
+</div>
+
+<footer class="app-footer">
+  Grammatikkveien mot A2 · Basert på CEFR-rammeverket · Laget for voksne deltakere i norskopplæring
+</footer>
+
+<script>
+/* ==========================================================
+   GRAMMATIKKDATA – 12 temaer mot CEFR A2
+   Oppgavetyper: mc (flervalg), fyll (fyll inn), ordre (ordrekkefølge)
+   ========================================================== */
+const TEMAER = [
+
+/* ---------- 1. SETNINGER OG V2-REGELEN ---------- */
+{
+id:'v2', ikon:'🧱', tittel:'Setninger og V2-regelen',
+kort:'Verbet står alltid på plass nummer to.',
+leksjon:`
+<p>En norsk setning har ofte denne rekkefølgen: <span class="uth">subjekt + verb + resten</span>.</p>
+<div class="eksempelboks">
+  <p>Jeg <span class="uth2">spiser</span> frokost klokka sju.</p>
+  <p>Vi <span class="uth2">bor</span> i Molde.</p>
+</div>
+<div class="regelboks">
+  <strong>V2-regelen:</strong> Verbet står <strong>alltid på plass nummer to</strong> i en fortellende setning.
+  Hvis setningen begynner med noe annet enn subjektet (for eksempel tid eller sted), bytter subjektet og verbet plass. Dette kaller vi <strong>inversjon</strong>.
+</div>
+<table class="gtab">
+<caption>Se hva som skjer når vi flytter «klokka sju» først:</caption>
+<tr><th>Plass 1</th><th>Plass 2 (verb)</th><th>Resten</th></tr>
+<tr><td>Jeg</td><td><strong>spiser</strong></td><td>frokost klokka sju.</td></tr>
+<tr><td>Klokka sju</td><td><strong>spiser</strong></td><td>jeg frokost.</td></tr>
+<tr><td>I dag</td><td><strong>jobber</strong></td><td>hun hjemme.</td></tr>
+<tr><td>Om sommeren</td><td><strong>reiser</strong></td><td>vi til Spania.</td></tr>
+</table>
+<p>Legg merke til: Verbet er <em>alltid</em> nummer to – men subjektet kan flytte seg!</p>`,
+oppgaver:[
+{type:'mc', sp:'Hvilken setning er riktig?',
+ alt:['I dag jeg jobber hjemme.','I dag jobber jeg hjemme.','I dag jeg hjemme jobber.'], riktig:1,
+ fb:'Setningen begynner med «I dag». Da må verbet «jobber» stå på plass nummer to: I dag + jobber + jeg.'},
+{type:'ordre', instruks:'Bygg en riktig setning. Begynn med «Klokka».',
+ ord:['Klokka','åtte','spiser','jeg','frokost'], svar:'Klokka åtte spiser jeg frokost',
+ fb:'«Klokka åtte» står først, så kommer verbet «spiser» på plass to, og deretter subjektet «jeg».'},
+{type:'mc', sp:'På lørdag ___ til Ålesund.',
+ alt:['reiser vi','vi reiser','vi skal'], riktig:0,
+ fb:'«På lørdag» står først, så verbet «reiser» må komme på plass to. Subjektet «vi» kommer etter verbet.'},
+{type:'ordre', instruks:'Bygg en riktig setning. Begynn med «I».',
+ ord:['I','morgen','skal','hun','jobbe'], svar:'I morgen skal hun jobbe',
+ fb:'«I morgen» står først → verbet «skal» på plass to → subjektet «hun» etterpå.'},
+{type:'mc', sp:'Hvilken setning er riktig?',
+ alt:['Nå vi drikker kaffe.','Vi nå drikker kaffe.','Nå drikker vi kaffe.'], riktig:2,
+ fb:'«Nå» står først, og da må verbet «drikker» stå på plass nummer to.'},
+{type:'fyll', sp:'Om sommeren ___ mange nordmenn på hytta.', hint:'(å være – presens)',
+ svar:['er'],
+ fb:'Verbet «er» står på plass to: Om sommeren (1) + er (2) + mange nordmenn (3).'},
+{type:'ordre', instruks:'Bygg en riktig setning. Begynn med «Etter».',
+ ord:['Etter','jobb','går','han','hjem'], svar:'Etter jobb går han hjem',
+ fb:'«Etter jobb» først → verbet «går» på plass to → «han» etter verbet. Flott inversjon!'},
+{type:'mc', sp:'Hver dag ___ bussen til skolen.',
+ alt:['jeg tar','tar jeg','jeg skal ta'], riktig:1,
+ fb:'«Hver dag» står først. Da kommer verbet «tar» på plass to, og «jeg» kommer etterpå.'}
+]},
+
+/* ---------- 2. SPØRSMÅL OG SPØRREORD ---------- */
+{
+id:'sporsmal', ikon:'❓', tittel:'Spørsmål og spørreord',
+kort:'Hva, hvem, hvor, når, hvorfor, hvordan, hvilken.',
+leksjon:`
+<p>Vi lager spørsmål på to måter i norsk:</p>
+<div class="regelboks">
+  <strong>1. Med spørreord:</strong> Spørreordet står først, verbet på plass to.<br>
+  <strong>2. Uten spørreord (ja/nei-spørsmål):</strong> Verbet står først!
+</div>
+<table class="gtab">
+<caption>De viktigste spørreordene:</caption>
+<tr><th>Spørreord</th><th>Spør om</th><th>Eksempel</th></tr>
+<tr><td><strong>Hva</strong></td><td>ting, handling</td><td>Hva heter du?</td></tr>
+<tr><td><strong>Hvem</strong></td><td>person</td><td>Hvem er læreren din?</td></tr>
+<tr><td><strong>Hvor</strong></td><td>sted (og mengde: hvor mange, hvor gammel)</td><td>Hvor bor du?</td></tr>
+<tr><td><strong>Når</strong></td><td>tid</td><td>Når begynner kurset?</td></tr>
+<tr><td><strong>Hvorfor</strong></td><td>grunn (svar: fordi ...)</td><td>Hvorfor lærer du norsk?</td></tr>
+<tr><td><strong>Hvordan</strong></td><td>måte</td><td>Hvordan går det?</td></tr>
+<tr><td><strong>Hvilken / hvilket / hvilke</strong></td><td>valg</td><td>Hvilken buss tar du?</td></tr>
+</table>
+<div class="eksempelboks">
+  <p><strong>Ja/nei-spørsmål:</strong> <span class="uth2">Snakker</span> du norsk? – Ja. / <span class="uth2">Har</span> du barn? – Nei.</p>
+</div>`,
+oppgaver:[
+{type:'mc', sp:'___ bor du? – Jeg bor i Molde.',
+ alt:['Hva','Hvor','Hvem'], riktig:1,
+ fb:'Svaret er et sted (Molde). Da spør vi med «hvor».'},
+{type:'mc', sp:'___ heter du? – Jeg heter Amina.',
+ alt:['Hva','Hvor','Hvordan'], riktig:0,
+ fb:'På norsk sier vi «Hva heter du?». Vi bruker «hva», ikke «hvordan».'},
+{type:'fyll', sp:'___ kommer bussen? – Klokka ti.', hint:'(spørreord om tid)',
+ svar:['når'],
+ fb:'Svaret er en tid (klokka ti). Da spør vi med «når».'},
+{type:'mc', sp:'___ er du trist? – Fordi jeg er syk.',
+ alt:['Hvordan','Hvor','Hvorfor'], riktig:2,
+ fb:'Svaret begynner med «fordi». Da er spørreordet «hvorfor».'},
+{type:'ordre', instruks:'Bygg et ja/nei-spørsmål.',
+ ord:['Snakker','du','norsk?'], svar:'Snakker du norsk?',
+ fb:'I ja/nei-spørsmål står verbet først: Snakker + du + norsk?'},
+{type:'mc', sp:'___ buss tar du til jobb?',
+ alt:['Hvilken','Hvilket','Hvilke'], riktig:0,
+ fb:'«Buss» er et en-ord (en buss). Da bruker vi «hvilken». (Et-ord: hvilket hus. Flertall: hvilke busser.)'},
+{type:'ordre', instruks:'Bygg et ja/nei-spørsmål.',
+ ord:['Har','du','barn?'], svar:'Har du barn?',
+ fb:'Verbet «har» står først i ja/nei-spørsmål.'},
+{type:'mc', sp:'___ gammel er du?',
+ alt:['Hva','Hvor','Når'], riktig:1,
+ fb:'Vi bruker «hvor» sammen med adjektiv: hvor gammel, hvor mange, hvor langt.'}
+]},
+
+/* ---------- 3. VERB I PRESENS ---------- */
+{
+id:'presens', ikon:'▶️', tittel:'Verb i presens',
+kort:'Det som skjer nå eller ofte: infinitiv + r.',
+leksjon:`
+<p>Vi bruker <span class="uth">presens</span> om noe som skjer <strong>nå</strong>, eller noe som skjer <strong>ofte / hver dag</strong>.</p>
+<div class="regelboks">
+  <strong>Regel:</strong> infinitiv + <strong>r</strong>. Formen er lik for alle: jeg, du, han, hun, vi, dere, de.<br>
+  å bo → bo<strong>r</strong> · å spise → spise<strong>r</strong> · å jobbe → jobbe<strong>r</strong>
+</div>
+<table class="gtab">
+<caption>Noen viktige verb har spesiell presensform:</caption>
+<tr><th>Infinitiv</th><th>Presens</th><th>Eksempel</th></tr>
+<tr><td>å være</td><td><strong>er</strong></td><td>Jeg er lærer.</td></tr>
+<tr><td>å gjøre</td><td><strong>gjør</strong></td><td>Hva gjør du?</td></tr>
+<tr><td>å vite</td><td><strong>vet</strong></td><td>Jeg vet ikke.</td></tr>
+<tr><td>å si</td><td><strong>sier</strong></td><td>Hun sier hei.</td></tr>
+<tr><td>å spørre</td><td><strong>spør</strong></td><td>Læreren spør meg.</td></tr>
+</table>
+<div class="eksempelboks">
+  <p>Jeg <span class="uth2">bor</span> i Molde. · Hun <span class="uth2">leser</span> hver kveld. · Vi <span class="uth2">er</span> på kurs nå.</p>
+</div>`,
+oppgaver:[
+{type:'fyll', sp:'Jeg ___ i Molde.', hint:'(å bo)', svar:['bor'],
+ fb:'å bo + r = bor. Presens er lik for alle personer.'},
+{type:'fyll', sp:'Hun ___ norsk hver dag.', hint:'(å lese)', svar:['leser'],
+ fb:'å lese + r = leser. «Hver dag» forteller oss at vi skal bruke presens.'},
+{type:'mc', sp:'Vi ___ på jobb nå.',
+ alt:['er','var','vært'], riktig:0,
+ fb:'«Nå» = presens. Presens av «å være» er «er».'},
+{type:'fyll', sp:'De ___ fotball på søndager.', hint:'(å spille)', svar:['spiller'],
+ fb:'å spille + r = spiller. Det skjer hver søndag, derfor presens.'},
+{type:'mc', sp:'Han ___ ikke svaret.',
+ alt:['vite','visste','vet'], riktig:2,
+ fb:'Presens av «å vite» er «vet». Det er et spesielt verb.'},
+{type:'fyll', sp:'Hva ___ du i helgene?', hint:'(å gjøre)', svar:['gjør'],
+ fb:'Presens av «å gjøre» er «gjør» – uten -er.'},
+{type:'mc', sp:'Hvilken setning er i presens?',
+ alt:['Jeg jobbet i går.','Jeg jobber nå.','Jeg har jobbet før.'], riktig:1,
+ fb:'«Jobber» er presens (nå). «Jobbet» er preteritum, og «har jobbet» er perfektum.'},
+{type:'fyll', sp:'Barna ___ på skolen.', hint:'(å være)', svar:['er'],
+ fb:'Presens av «å være» er «er» – også for flertall: barna er.'}
+]},
+
+/* ---------- 4. VERB I PRETERITUM ---------- */
+{
+id:'preteritum', ikon:'⏪', tittel:'Verb i preteritum',
+kort:'Fortid med tidspunkt: i går, i fjor, for to år siden.',
+leksjon:`
+<p>Vi bruker <span class="uth">preteritum</span> om noe som skjedde i fortiden, ofte med et <strong>tidspunkt</strong>: i går, i fjor, forrige uke, for tre år siden.</p>
+<table class="gtab">
+<caption>Fire grupper av regelmessige verb:</caption>
+<tr><th>Gruppe</th><th>Infinitiv</th><th>Preteritum</th></tr>
+<tr><td>1: -et</td><td>å snakke, å jobbe, å våkne</td><td>snakk<strong>et</strong>, jobb<strong>et</strong>, vakn<strong>et</strong></td></tr>
+<tr><td>2: -te</td><td>å spise, å lese, å kjøpe</td><td>spis<strong>te</strong>, les<strong>te</strong>, kjøp<strong>te</strong></td></tr>
+<tr><td>3: -de</td><td>å prøve, å leve</td><td>prøv<strong>de</strong>, lev<strong>de</strong></td></tr>
+<tr><td>4: -dde</td><td>å bo, å nå</td><td>bo<strong>dde</strong>, nå<strong>dde</strong></td></tr>
+</table>
+<table class="gtab">
+<caption>Viktige uregelmessige verb – disse må du lære utenat:</caption>
+<tr><th>Infinitiv</th><th>Preteritum</th><th>Infinitiv</th><th>Preteritum</th></tr>
+<tr><td>å være</td><td><strong>var</strong></td><td>å komme</td><td><strong>kom</strong></td></tr>
+<tr><td>å ha</td><td><strong>hadde</strong></td><td>å se</td><td><strong>så</strong></td></tr>
+<tr><td>å gå</td><td><strong>gikk</strong></td><td>å si</td><td><strong>sa</strong></td></tr>
+<tr><td>å få</td><td><strong>fikk</strong></td><td>å dra</td><td><strong>dro</strong></td></tr>
+<tr><td>å drikke</td><td><strong>drakk</strong></td><td>å spørre</td><td><strong>spurte</strong></td></tr>
+</table>
+<div class="eksempelboks">
+  <p>I går <span class="uth2">snakket</span> jeg med sjefen. · Vi <span class="uth2">bodde</span> i Oslo i to år. · Han <span class="uth2">gikk</span> hjem klokka fire.</p>
+</div>`,
+oppgaver:[
+{type:'fyll', sp:'I går ___ jeg med læreren.', hint:'(å snakke)', svar:['snakket','snakka'],
+ fb:'«Å snakke» er gruppe 1: snakket. («Snakka» er også riktig.)'},
+{type:'fyll', sp:'Vi ___ middag klokka fem i går.', hint:'(å spise)', svar:['spiste'],
+ fb:'«Å spise» er gruppe 2: spiste.'},
+{type:'mc', sp:'Hun ___ i Oslo for tre år siden.',
+ alt:['bor','bodde','bodd'], riktig:1,
+ fb:'«For tre år siden» = preteritum. «Å bo» er gruppe 4: bodde.'},
+{type:'fyll', sp:'Han ___ på butikken i går.', hint:'(å gå)', svar:['gikk'],
+ fb:'«Å gå» er uregelmessig: gikk.'},
+{type:'mc', sp:'___ du på kino i helgen?',
+ alt:['Er','Vært','Var'], riktig:2,
+ fb:'«I helgen» (som er ferdig) = preteritum. Preteritum av «å være» er «var».'},
+{type:'fyll', sp:'De ___ til Norge i 2020.', hint:'(å komme)', svar:['kom'],
+ fb:'«Å komme» er uregelmessig: kom.'},
+{type:'fyll', sp:'Jeg ___ en ny jakke forrige uke.', hint:'(å kjøpe)', svar:['kjøpte'],
+ fb:'«Å kjøpe» er gruppe 2: kjøpte.'},
+{type:'mc', sp:'Hvilken setning er i preteritum?',
+ alt:['Jeg leser en bok.','Jeg har lest en bok.','Jeg leste en bok i går.'], riktig:2,
+ fb:'«Leste» er preteritum. Tidspunktet «i går» passer godt med preteritum.'}
+]},
+
+/* ---------- 5. PERFEKTUM ---------- */
+{
+id:'perfektum', ikon:'✅', tittel:'Perfektum (har + verb)',
+kort:'Har bodd, har spist – når tidspunktet ikke er viktig.',
+leksjon:`
+<p>Vi bruker <span class="uth">perfektum</span> når noe har skjedd, men <strong>tidspunktet ikke er viktig</strong> – eller når noe begynte i fortiden og fortsetter nå.</p>
+<div class="regelboks">
+  <strong>Regel:</strong> har + perfektum partisipp.<br>
+  Jeg <strong>har bodd</strong> i Norge i tre år. (Jeg bor her fortsatt!)<br>
+  <strong>Har</strong> du <strong>spist</strong> frokost? (Tidspunktet er ikke viktig – resultatet er viktig.)
+</div>
+<table class="gtab">
+<caption>Vanlige partisippformer:</caption>
+<tr><th>Infinitiv</th><th>Perfektum</th><th>Infinitiv</th><th>Perfektum</th></tr>
+<tr><td>å snakke</td><td>har snakk<strong>et</strong></td><td>å være</td><td>har <strong>vært</strong></td></tr>
+<tr><td>å spise</td><td>har spis<strong>t</strong></td><td>å gjøre</td><td>har <strong>gjort</strong></td></tr>
+<tr><td>å lese</td><td>har les<strong>t</strong></td><td>å se</td><td>har <strong>sett</strong></td></tr>
+<tr><td>å bo</td><td>har bo<strong>dd</strong></td><td>å skrive</td><td>har <strong>skrevet</strong></td></tr>
+<tr><td>å lære</td><td>har lær<strong>t</strong></td><td>å gå</td><td>har <strong>gått</strong></td></tr>
+</table>
+<div class="eksempelboks">
+  <p><strong>Sammenlign:</strong></p>
+  <p>Preteritum: Jeg <span class="uth2">bodde</span> i Oslo <strong>i 2019</strong>. (tidspunkt – ferdig)</p>
+  <p>Perfektum: Jeg <span class="uth2">har bodd</span> i Norge <strong>i tre år</strong>. (fortsetter nå)</p>
+</div>`,
+oppgaver:[
+{type:'fyll', sp:'Jeg har ___ i Norge i tre år.', hint:'(å bo)', svar:['bodd'],
+ fb:'har + bodd. Jeg bor her fortsatt, derfor perfektum.'},
+{type:'mc', sp:'Har du ___ frokost?',
+ alt:['spiste','spist','spise'], riktig:1,
+ fb:'Etter «har» bruker vi partisipp: spist.'},
+{type:'fyll', sp:'Vi har ___ norsk i seks måneder.', hint:'(å lære)', svar:['lært'],
+ fb:'har + lært. Vi lærer fortsatt!'},
+{type:'mc', sp:'Hun har aldri ___ i Bergen.',
+ alt:['vært','var','er'], riktig:0,
+ fb:'Partisipp av «å være» er «vært»: har vært.'},
+{type:'fyll', sp:'Han har ___ tre e-poster i dag.', hint:'(å skrive)', svar:['skrevet'],
+ fb:'Partisipp av «å skrive» er «skrevet»: har skrevet.'},
+{type:'mc', sp:'Hvilken setning er riktig?',
+ alt:['Jeg har så filmen.','Jeg har ser filmen.','Jeg har sett filmen.'], riktig:2,
+ fb:'Etter «har» kommer partisipp: sett. («Så» er preteritum, «ser» er presens.)'},
+{type:'fyll', sp:'De har ___ mye i helgen.', hint:'(å gjøre)', svar:['gjort'],
+ fb:'Partisipp av «å gjøre» er «gjort»: har gjort.'},
+{type:'mc', sp:'Når bruker vi perfektum?',
+ alt:['Når tidspunktet er viktig (i går, i fjor).','Når tidspunktet ikke er viktig, eller noe fortsetter nå.','Bare om framtiden.'], riktig:1,
+ fb:'Perfektum = resultatet eller erfaringen er viktig, ikke tidspunktet. Med tidspunkt (i går) bruker vi preteritum.'}
+]},
+
+/* ---------- 6. MODALVERB ---------- */
+{
+id:'modal', ikon:'🔑', tittel:'Modalverb',
+kort:'Kan, vil, skal, må, bør + infinitiv uten «å».',
+leksjon:`
+<p>Modalverb forteller om mulighet, ønske, plan, plikt eller råd. De står sammen med et annet verb.</p>
+<div class="regelboks">
+  <strong>Viktig regel:</strong> Etter modalverb kommer infinitiv <strong>uten «å»</strong>!<br>
+  Jeg kan <strong>snakke</strong> norsk. <span style="color:var(--error)">(IKKE: kan å snakke)</span>
+</div>
+<table class="gtab">
+<caption>De fem viktigste modalverbene:</caption>
+<tr><th>Modalverb</th><th>Betydning</th><th>Eksempel</th></tr>
+<tr><td><strong>kan</strong></td><td>mulighet, evne</td><td>Jeg kan svømme.</td></tr>
+<tr><td><strong>vil</strong></td><td>ønske</td><td>Hun vil bli sykepleier.</td></tr>
+<tr><td><strong>skal</strong></td><td>plan, avtale</td><td>Vi skal reise i sommer.</td></tr>
+<tr><td><strong>må</strong></td><td>plikt, nødvendig</td><td>Du må ha billett.</td></tr>
+<tr><td><strong>bør</strong></td><td>råd (det er lurt)</td><td>Du bør sove mer.</td></tr>
+</table>
+<div class="eksempelboks">
+  <p>Kan du <span class="uth2">hjelpe</span> meg? · Jeg må <span class="uth2">gå</span> nå. · Vi skal <span class="uth2">jobbe</span> i morgen.</p>
+</div>`,
+oppgaver:[
+{type:'mc', sp:'Jeg ___ snakke litt norsk.',
+ alt:['kan','kan å','vet'], riktig:0,
+ fb:'«Kan» + infinitiv uten «å»: kan snakke.'},
+{type:'mc', sp:'Du ___ ha pass når du reiser til utlandet.',
+ alt:['vil','må','kan'], riktig:1,
+ fb:'Dette er en plikt – noe som er nødvendig. Da bruker vi «må».'},
+{type:'fyll', sp:'Hun ___ bli sykepleier. (Det er drømmen hennes.)', hint:'(vil / må / bør)', svar:['vil'],
+ fb:'Et ønske eller en drøm: «vil».'},
+{type:'mc', sp:'Hvilken setning er riktig?',
+ alt:['Jeg må å gå nå.','Jeg må går nå.','Jeg må gå nå.'], riktig:2,
+ fb:'Etter modalverb: infinitiv uten «å» – må gå.'},
+{type:'ordre', instruks:'Bygg et høflig spørsmål.',
+ ord:['Kan','du','hjelpe','meg?'], svar:'Kan du hjelpe meg?',
+ fb:'Modalverbet «kan» står først i spørsmålet, og «hjelpe» er infinitiv uten «å».'},
+{type:'mc', sp:'Vi ___ reise til Tyrkia i sommer. (Det er planen vår.)',
+ alt:['bør','skal','må'], riktig:1,
+ fb:'En plan eller avtale: «skal».'},
+{type:'fyll', sp:'Du ___ spise mer grønnsaker. (Det er et godt råd.)', hint:'(bør / vil / kan)', svar:['bør'],
+ fb:'Et råd – noe som er lurt: «bør».'},
+{type:'ordre', instruks:'Bygg en riktig setning. Begynn med «I».',
+ ord:['I','morgen','må','jeg','jobbe'], svar:'I morgen må jeg jobbe',
+ fb:'«I morgen» først → modalverbet «må» på plass to (V2-regelen!) → «jeg» → «jobbe» (infinitiv uten «å»).'}
+]},
+
+/* ---------- 7. SUBSTANTIV ---------- */
+{
+id:'substantiv', ikon:'📦', tittel:'Substantiv: en, ei, et',
+kort:'Kjønn, bestemt form og flertall.',
+leksjon:`
+<p>Norske substantiv har tre kjønn: <span class="uth">en</span> (hankjønn), <span class="uth">ei</span> (hunkjønn) og <span class="uth">et</span> (intetkjønn). Du må lære kjønnet sammen med ordet!</p>
+<table class="gtab">
+<caption>De fire formene av substantivet:</caption>
+<tr><th>Ubestemt entall</th><th>Bestemt entall</th><th>Ubestemt flertall</th><th>Bestemt flertall</th></tr>
+<tr><td>en bil</td><td>bil<strong>en</strong></td><td>bil<strong>er</strong></td><td>bil<strong>ene</strong></td></tr>
+<tr><td>ei jente</td><td>jent<strong>a</strong></td><td>jent<strong>er</strong></td><td>jent<strong>ene</strong></td></tr>
+<tr><td>et hus</td><td>hus<strong>et</strong></td><td>hus</td><td>hus<strong>ene</strong></td></tr>
+<tr><td>et eple</td><td>eple<strong>t</strong></td><td>epl<strong>er</strong></td><td>epl<strong>ene</strong></td></tr>
+</table>
+<div class="regelboks">
+  <strong>Husk:</strong> Korte et-ord (én stavelse) får <strong>ingen endelse</strong> i ubestemt flertall: et hus → mange hus, et barn → mange barn, et brev → mange brev.
+</div>
+<table class="gtab">
+<caption>Noen ord er uregelmessige:</caption>
+<tr><th>Entall</th><th>Flertall</th></tr>
+<tr><td>en mann</td><td>mange <strong>menn</strong></td></tr>
+<tr><td>ei bok</td><td>mange <strong>bøker</strong></td></tr>
+<tr><td>et barn</td><td>mange <strong>barn</strong> (barna i bestemt form)</td></tr>
+<tr><td>en lærer</td><td>mange <strong>lærere</strong></td></tr>
+</table>`,
+oppgaver:[
+{type:'mc', sp:'___ bil', alt:['en','ei','et'], riktig:0,
+ fb:'Bil er hankjønn: en bil → bilen.'},
+{type:'mc', sp:'___ hus', alt:['en','ei','et'], riktig:2,
+ fb:'Hus er intetkjønn: et hus → huset.'},
+{type:'fyll', sp:'Jeg har en katt. ___ er svart.', hint:'(katt i bestemt form)', svar:['katten'],
+ fb:'Bestemt form av «en katt» er «katten». Vi vet nå hvilken katt vi snakker om.'},
+{type:'mc', sp:'Hva er bestemt form av «et eple»?',
+ alt:['eplen','eplet','eplene'], riktig:1,
+ fb:'Et-ord får -et (eller bare -t) i bestemt form: eplet. («Eplene» er bestemt flertall.)'},
+{type:'fyll', sp:'én stol – mange ___', hint:'(flertall)', svar:['stoler'],
+ fb:'En-ord får -er i flertall: stoler.'},
+{type:'mc', sp:'én mann – mange ___',
+ alt:['manner','mannen','menn'], riktig:2,
+ fb:'«Mann» er uregelmessig: én mann → mange menn.'},
+{type:'fyll', sp:'ett barn – mange ___', hint:'(flertall)', svar:['barn'],
+ fb:'Korte et-ord får ingen endelse i ubestemt flertall: mange barn. (Bestemt form: barna.)'},
+{type:'mc', sp:'Hvor er ___? (bøkene til klassen)',
+ alt:['bokene','bøkene','bøker'], riktig:1,
+ fb:'«Bok» er uregelmessig: bok – boka – bøker – bøkene. Bestemt flertall: bøkene.'}
+]},
+
+/* ---------- 8. PRONOMEN OG EIENDOMSORD ---------- */
+{
+id:'pronomen', ikon:'👥', tittel:'Pronomen og eiendomsord',
+kort:'Jeg/meg, han/ham, min/mitt/mine.',
+leksjon:`
+<p>Pronomen har to former: én når personen <strong>gjør noe</strong> (subjekt), og én når noe <strong>skjer med personen</strong> (objekt).</p>
+<table class="gtab">
+<caption>Subjekt og objekt:</caption>
+<tr><th>Subjekt</th><th>Objekt</th><th>Eksempel</th></tr>
+<tr><td>jeg</td><td><strong>meg</strong></td><td>Kan du hjelpe meg?</td></tr>
+<tr><td>du</td><td><strong>deg</strong></td><td>Jeg ser deg.</td></tr>
+<tr><td>han</td><td><strong>ham</strong></td><td>Vi kjenner ham.</td></tr>
+<tr><td>hun</td><td><strong>henne</strong></td><td>Jeg ringer henne.</td></tr>
+<tr><td>vi</td><td><strong>oss</strong></td><td>De besøker oss.</td></tr>
+<tr><td>dere</td><td><strong>dere</strong></td><td>Jeg hører dere.</td></tr>
+<tr><td>de</td><td><strong>dem</strong></td><td>Hun kjenner dem.</td></tr>
+</table>
+<table class="gtab">
+<caption>Eiendomsord følger kjønnet til tingen:</caption>
+<tr><th>en-ord</th><th>ei-ord</th><th>et-ord</th><th>flertall</th></tr>
+<tr><td>bilen <strong>min</strong></td><td>boka <strong>mi</strong></td><td>huset <strong>mitt</strong></td><td>barna <strong>mine</strong></td></tr>
+<tr><td>bilen <strong>din</strong></td><td>boka <strong>di</strong></td><td>huset <strong>ditt</strong></td><td>barna <strong>dine</strong></td></tr>
+<tr><td colspan="4">hans (han) · hennes (hun) · vår/vårt/våre (vi) · deres (dere/de)</td></tr>
+</table>
+<div class="eksempelboks">
+  <p>Dette er bilen <span class="uth2">min</span>. · Huset <span class="uth2">vårt</span> er gult. · Mannen <span class="uth2">hennes</span> heter Tor.</p>
+</div>`,
+oppgaver:[
+{type:'mc', sp:'Kan du hjelpe ___?',
+ alt:['jeg','meg','min'], riktig:1,
+ fb:'Her er «jeg» objekt (noen hjelper meg). Objektsformen er «meg».'},
+{type:'mc', sp:'___ bor i Molde.',
+ alt:['Oss','Vår','Vi'], riktig:2,
+ fb:'Her trenger vi subjektsformen: «Vi bor».'},
+{type:'fyll', sp:'Dette er bilen ___. (Den tilhører meg.)', hint:'(eiendomsord, jeg)', svar:['min'],
+ fb:'Bil er et en-ord: bilen min.'},
+{type:'mc', sp:'Det er huset ___. (Det tilhører meg.)',
+ alt:['min','mitt','mine'], riktig:1,
+ fb:'Hus er et et-ord: huset mitt.'},
+{type:'mc', sp:'Jeg ser ___ hver dag. (naboene)',
+ alt:['de','dem','deres'], riktig:1,
+ fb:'Her er naboene objekt (jeg ser dem). Objektsformen av «de» er «dem».'},
+{type:'fyll', sp:'Dette er Anna. Mannen ___ heter Tor.', hint:'(eiendomsord, hun)', svar:['hennes'],
+ fb:'Noe som tilhører «hun»: hennes. Mannen hennes = Annas mann.'},
+{type:'mc', sp:'Er dette barnet ___? (Tilhører det deg?)',
+ alt:['din','ditt','dine'], riktig:1,
+ fb:'Barn er et et-ord: barnet ditt.'},
+{type:'fyll', sp:'Vi elsker huset ___. (Det tilhører oss.)', hint:'(eiendomsord, vi)', svar:['vårt'],
+ fb:'Hus er et et-ord: huset vårt. (Bilen vår, barna våre.)'}
+]},
+
+/* ---------- 9. ADJEKTIV ---------- */
+{
+id:'adjektiv', ikon:'🎨', tittel:'Adjektiv',
+kort:'En stor bil, et stort hus, store biler.',
+leksjon:`
+<p>Adjektivet beskriver substantivet – og det <strong>bøyer seg etter kjønn og tall</strong>.</p>
+<table class="gtab">
+<caption>Grunnregelen:</caption>
+<tr><th>en/ei-ord</th><th>et-ord (+t)</th><th>flertall (+e)</th></tr>
+<tr><td>en <strong>stor</strong> bil</td><td>et stor<strong>t</strong> hus</td><td>stor<strong>e</strong> biler</td></tr>
+<tr><td>en <strong>fin</strong> dag</td><td>et fin<strong>t</strong> bilde</td><td>fin<strong>e</strong> dager</td></tr>
+<tr><td>Bilen er stor.</td><td>Huset er stor<strong>t</strong>.</td><td>Bilene er stor<strong>e</strong>.</td></tr>
+</table>
+<div class="regelboks">
+  <strong>Etter den / det / de</strong> får adjektivet alltid <strong>-e</strong>:<br>
+  den stor<strong>e</strong> bilen · det ny<strong>e</strong> huset · de fin<strong>e</strong> dagene
+</div>
+<table class="gtab">
+<caption>Noen spesielle adjektiv:</caption>
+<tr><th>en/ei-ord</th><th>et-ord</th><th>flertall</th></tr>
+<tr><td>grønn</td><td>grøn<strong>t</strong> (mister én n)</td><td>grønne</td></tr>
+<tr><td>gammel</td><td>gammel<strong>t</strong></td><td><strong>gamle</strong></td></tr>
+<tr><td>liten / lita</td><td>lite</td><td><strong>små</strong></td></tr>
+<tr><td>bra</td><td>bra (ingen -t)</td><td>bra</td></tr>
+</table>`,
+oppgaver:[
+{type:'mc', sp:'et ___ hus',
+ alt:['stor','stort','store'], riktig:1,
+ fb:'Et-ord gir adjektivet -t: et stort hus.'},
+{type:'fyll', sp:'en ___ bil', hint:'(fin)', svar:['fin'],
+ fb:'En-ord: grunnformen uten endelse – en fin bil.'},
+{type:'fyll', sp:'mange ___ blomster', hint:'(fin)', svar:['fine'],
+ fb:'Flertall gir adjektivet -e: fine blomster.'},
+{type:'mc', sp:'Huset er ___.',
+ alt:['gammel','gamle','gammelt'], riktig:2,
+ fb:'Huset er et et-ord, så adjektivet får -t: gammelt.'},
+{type:'mc', sp:'den ___ jakka',
+ alt:['ny','nytt','nye'], riktig:2,
+ fb:'Etter «den/det/de» får adjektivet alltid -e: den nye jakka.'},
+{type:'fyll', sp:'et ___ eple', hint:'(grønn)', svar:['grønt'],
+ fb:'Grønn + t = grønt. Adjektivet mister én n.'},
+{type:'mc', sp:'Barna er ___.',
+ alt:['glad','glade','gladt'], riktig:1,
+ fb:'Barna er flertall, så adjektivet får -e: glade.'},
+{type:'mc', sp:'Hvilken er riktig?',
+ alt:['ei liten jente','ei lite jente','ei lita jente'], riktig:2,
+ fb:'«Liten» er spesielt: en liten gutt, ei lita jente, et lite barn, små barn.'}
+]},
+
+/* ---------- 10. PREPOSISJONER ---------- */
+{
+id:'preposisjoner', ikon:'📍', tittel:'Preposisjoner',
+kort:'I, på, til, fra, hos – om sted og tid.',
+leksjon:`
+<table class="gtab">
+<caption>Preposisjoner om sted:</caption>
+<tr><th>Preposisjon</th><th>Bruk</th><th>Eksempel</th></tr>
+<tr><td><strong>i</strong></td><td>byer, land, rom</td><td>Jeg bor i Molde. Hun er i stua.</td></tr>
+<tr><td><strong>på</strong></td><td>arbeidsplasser, institusjoner, åpne steder</td><td>Hun jobber på sykehuset. Vi er på skolen.</td></tr>
+<tr><td><strong>til</strong></td><td>retning, mål</td><td>Vi reiser til Oslo.</td></tr>
+<tr><td><strong>fra</strong></td><td>opprinnelse</td><td>Jeg kommer fra Syria.</td></tr>
+<tr><td><strong>hos</strong></td><td>hjemme hos en person</td><td>Han er hos legen. Vi spiser hos Anna.</td></tr>
+</table>
+<table class="gtab">
+<caption>Preposisjoner om tid:</caption>
+<tr><th>Preposisjon</th><th>Bruk</th><th>Eksempel</th></tr>
+<tr><td><strong>på</strong></td><td>dager</td><td>Kurset begynner på mandag.</td></tr>
+<tr><td><strong>i</strong></td><td>måneder, år, høytider</td><td>i januar, i 2026, i påsken</td></tr>
+<tr><td><strong>om</strong></td><td>noe som gjentar seg + framtid</td><td>om vinteren, om morgenen, om to dager</td></tr>
+<tr><td><strong>for ... siden</strong></td><td>fortid</td><td>for tre år siden</td></tr>
+<tr><td><strong>klokka</strong></td><td>klokkeslett</td><td>Møtet starter klokka ni.</td></tr>
+</table>`,
+oppgaver:[
+{type:'mc', sp:'Jeg bor ___ Molde.',
+ alt:['på','i','til'], riktig:1,
+ fb:'Byer og land bruker «i»: i Molde, i Norge.'},
+{type:'mc', sp:'Hun jobber ___ sykehuset.',
+ alt:['på','i','hos'], riktig:0,
+ fb:'Arbeidsplasser og institusjoner bruker ofte «på»: på sykehuset, på skolen, på jobb.'},
+{type:'fyll', sp:'Vi skal reise ___ Oslo i morgen.', hint:'(retning)', svar:['til'],
+ fb:'Retning eller mål: «til» – vi reiser til Oslo.'},
+{type:'mc', sp:'Jeg kommer ___ Eritrea.',
+ alt:['av','på','fra'], riktig:2,
+ fb:'Opprinnelse: «fra» – jeg kommer fra Eritrea.'},
+{type:'mc', sp:'___ vinteren er det kaldt i Norge.',
+ alt:['På','Om','I'], riktig:1,
+ fb:'Noe som gjentar seg hvert år: «om vinteren», «om morgenen».'},
+{type:'mc', sp:'Kurset begynner ___ mandag.',
+ alt:['på','i','om'], riktig:0,
+ fb:'Dager bruker «på»: på mandag, på fredag.'},
+{type:'fyll', sp:'Jeg kom til Norge ___ tre år siden.', hint:'(fortid)', svar:['for'],
+ fb:'Fortid: «for ... siden» – for tre år siden.'},
+{type:'mc', sp:'Han er ___ legen i dag.',
+ alt:['på','ved','hos'], riktig:2,
+ fb:'Hos en person: «hos legen», «hos tannlegen», «hos Anna».'}
+]},
+
+/* ---------- 11. IKKE OG NEKTELSE ---------- */
+{
+id:'nektelse', ikon:'🚫', tittel:'Ikke og nektelse',
+kort:'Hvor skal «ikke» stå i setningen?',
+leksjon:`
+<div class="regelboks">
+  <strong>Hovedregel:</strong> «Ikke» står <strong>etter verbet</strong> i en vanlig setning.<br>
+  Jeg snakker <strong>ikke</strong> fransk. · Hun liker <strong>ikke</strong> fisk.
+</div>
+<table class="gtab">
+<caption>«Ikke» med to verb:</caption>
+<tr><th>Setning</th><th>Regel</th></tr>
+<tr><td>Vi kan <strong>ikke</strong> komme i dag.</td><td>«ikke» etter det første verbet</td></tr>
+<tr><td>Jeg har <strong>ikke</strong> sett filmen.</td><td>«ikke» etter «har»</td></tr>
+<tr><td>Hun vil <strong>ikke</strong> spise kjøtt.</td><td>«ikke» etter modalverbet</td></tr>
+</table>
+<div class="eksempelboks">
+  <p><strong>Ingen = ikke noen:</strong></p>
+  <p>Jeg har <span class="uth2">ingen</span> barn. = Jeg har <span class="uth2">ikke noen</span> barn.</p>
+</div>
+<p>Husk V2-regelen også her: I dag <span class="uth">jobber</span> jeg <strong>ikke</strong>.</p>`,
+oppgaver:[
+{type:'ordre', instruks:'Bygg en riktig setning.',
+ ord:['Jeg','snakker','ikke','fransk'], svar:'Jeg snakker ikke fransk',
+ fb:'«Ikke» kommer rett etter verbet: snakker ikke.'},
+{type:'mc', sp:'Hvilken setning er riktig?',
+ alt:['Hun ikke liker fisk.','Hun liker ikke fisk.','Hun liker fisk ikke.'], riktig:1,
+ fb:'«Ikke» står etter verbet i en hovedsetning: liker ikke.'},
+{type:'ordre', instruks:'Bygg en riktig setning. Begynn med «Vi».',
+ ord:['Vi','kan','ikke','komme','i','dag'], svar:'Vi kan ikke komme i dag',
+ fb:'Med to verb står «ikke» etter det første: kan ikke komme.'},
+{type:'mc', sp:'Hvilken setning er riktig?',
+ alt:['Jeg har ikke sett filmen.','Jeg har sett ikke filmen.','Jeg ikke har sett filmen.'], riktig:0,
+ fb:'«Ikke» står etter «har»: har ikke sett.'},
+{type:'ordre', instruks:'Bygg en riktig setning. Begynn med «I».',
+ ord:['I','dag','jobber','jeg','ikke'], svar:'I dag jobber jeg ikke',
+ fb:'«I dag» først → verbet «jobber» på plass to → «jeg» → «ikke» til slutt. V2 og nektelse sammen!'},
+{type:'mc', sp:'Forstår du? – Nei, jeg forstår ___.',
+ alt:['ingen','nei','ikke'], riktig:2,
+ fb:'Vi nekter verbet med «ikke»: jeg forstår ikke.'},
+{type:'mc', sp:'Jeg har ___ barn.',
+ alt:['ingen','ikke','nei'], riktig:0,
+ fb:'«Ingen» betyr «ikke noen»: Jeg har ingen barn.'},
+{type:'ordre', instruks:'Bygg en riktig setning.',
+ ord:['Hun','vil','ikke','spise','kjøtt'], svar:'Hun vil ikke spise kjøtt',
+ fb:'«Ikke» etter modalverbet: vil ikke spise.'}
+]},
+
+/* ---------- 12. FORDI, NÅR, HVIS ---------- */
+{
+id:'leddsetninger', ikon:'🔗', tittel:'Fordi, når, hvis og at',
+kort:'Å binde setninger sammen.',
+leksjon:`
+<p>Med småordene <span class="uth">fordi</span>, <span class="uth">når</span>, <span class="uth">hvis</span> og <span class="uth">at</span> kan du lage lengre setninger. De starter en <strong>leddsetning</strong>.</p>
+<table class="gtab">
+<caption>De fire viktigste:</caption>
+<tr><th>Ord</th><th>Betydning</th><th>Eksempel</th></tr>
+<tr><td><strong>fordi</strong></td><td>grunn</td><td>Jeg lærer norsk fordi jeg vil få jobb.</td></tr>
+<tr><td><strong>når</strong></td><td>tid</td><td>Når jeg kommer hjem, lager jeg middag.</td></tr>
+<tr><td><strong>hvis</strong></td><td>betingelse</td><td>Hvis det regner, tar jeg buss.</td></tr>
+<tr><td><strong>at</strong></td><td>etter si, tro, mene</td><td>Hun sier at hun kommer.</td></tr>
+</table>
+<div class="regelboks">
+  <strong>To viktige regler:</strong><br>
+  1. I leddsetningen står «ikke» <strong>før</strong> verbet: Jeg spiser ikke fordi jeg <strong>ikke er</strong> sulten.<br>
+  2. Hvis leddsetningen står først, kommer verbet i hovedsetningen <strong>rett etter kommaet</strong> (V2!):<br>
+  <em>Hvis det regner</em>, <strong>tar</strong> jeg buss.
+</div>`,
+oppgaver:[
+{type:'mc', sp:'Jeg lærer norsk ___ jeg vil få jobb.',
+ alt:['fordi','når','at'], riktig:0,
+ fb:'Vi gir en grunn: «fordi».'},
+{type:'mc', sp:'___ det regner, tar jeg buss.',
+ alt:['At','Når','Fordi'], riktig:1,
+ fb:'Dette handler om tid – hver gang det regner: «når». («Hvis» kunne også passe, men det står ikke her.)'},
+{type:'mc', sp:'___ du er syk, må du ringe sjefen.',
+ alt:['At','Fordi','Hvis'], riktig:2,
+ fb:'En betingelse – kanskje du blir syk, kanskje ikke: «hvis».'},
+{type:'fyll', sp:'Hun sier ___ hun kommer i morgen.', hint:'(småord etter «sier»)', svar:['at'],
+ fb:'Etter «si», «tro» og «mene» bruker vi «at»: Hun sier at ...'},
+{type:'mc', sp:'Hvilken setning er riktig?',
+ alt:['Jeg spiser ikke fordi jeg er ikke sulten.','Jeg spiser ikke fordi jeg ikke er sulten.','Jeg ikke spiser fordi jeg er ikke sulten.'], riktig:1,
+ fb:'I leddsetningen (etter «fordi») står «ikke» FØR verbet: fordi jeg ikke er sulten.'},
+{type:'ordre', instruks:'Bygg en riktig setning. Begynn med «Hvis».',
+ ord:['Hvis','det','er','fint','vær,','går','vi','tur'], svar:'Hvis det er fint vær, går vi tur',
+ fb:'Leddsetningen står først. Da kommer verbet «går» rett etter kommaet, før «vi».'},
+{type:'mc', sp:'Når jeg kommer hjem, ___ middag.',
+ alt:['jeg lager','lager jeg','jeg skal'], riktig:1,
+ fb:'Leddsetningen står først → verbet «lager» kommer rett etter kommaet (V2-regelen).'},
+{type:'mc', sp:'Jeg er glad ___ sola skinner.',
+ alt:['at','hvis','fordi'], riktig:2,
+ fb:'Vi gir en grunn til at jeg er glad: «fordi».'}
+]}
+
+];
+
+/* ==========================================================
+   MOTOR – tilstand, lagring, navigasjon, oppgaver, fremgang
+   ========================================================== */
+const NIVAER = [
+  {grense:0,   navn:'Nybegynner',     ikon:'🌱'},
+  {grense:100, navn:'Lærling',        ikon:'📖'},
+  {grense:250, navn:'På god vei',     ikon:'🚶'},
+  {grense:500, navn:'A2-utforsker',   ikon:'🧭'},
+  {grense:800, navn:'Grammatikkhelt', ikon:'🏆'}
+];
+const ROS = ['Riktig! Flott jobbet!','Helt riktig! Du er på god vei!','Supert! Det stemmer!','Bra! Du kan dette!','Riktig! Fortsett sånn!','Perfekt svar!'];
+const PROV_IGJEN = ['Ikke helt riktig – men du klarer det! Prøv en gang til.','Nesten! Se på hintet og prøv igjen.','Det var ikke riktig, men det går bra. Prøv igjen!'];
+const TROST = ['Det var ikke riktig denne gangen – men nå lærer du noe nytt!','Ikke riktig, men feil er en del av læringen. Se forklaringen under.','Det stemte ikke helt. Les forklaringen – så husker du det neste gang!'];
+
+/* ---------- Lagring (med trygg reserve hvis localStorage ikke finnes) ---------- */
+const LAGER_NOKKEL = 'grammatikkveienA2_v1';
+let minneLager = null;
+function lesTilstand(){
+  try{ const r = localStorage.getItem(LAGER_NOKKEL); if(r) return JSON.parse(r); }catch(e){ if(minneLager) return minneLager; }
+  return {poeng:0, streak:0, besteStreak:0, temaer:{}};
+}
+function lagreTilstand(){
+  minneLager = tilstand;
+  try{ localStorage.setItem(LAGER_NOKKEL, JSON.stringify(tilstand)); }catch(e){}
+}
+let tilstand = lesTilstand();
+function temaData(id){
+  if(!tilstand.temaer[id]) tilstand.temaer[id] = {besvart:0, riktigForsteForsok:0, fullfort:false, besteProsent:0};
+  return tilstand.temaer[id];
+}
+
+/* ---------- Hjelpere ---------- */
+const $ = s => document.querySelector(s);
+function esc(t){ const d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
+function bland(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function tilfeldig(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function normaliser(s){ return s.trim().toLowerCase().replace(/\s+/g,' '); }
+
+/* ---------- Poengtavle ---------- */
+function nivaFor(poeng){ let n=NIVAER[0]; for(const niv of NIVAER){ if(poeng>=niv.grense) n=niv; } return n; }
+function oppdaterTavle(){
+  $('#poeng-tall').textContent = tilstand.poeng;
+  $('#streak-tall').textContent = tilstand.streak;
+  const n = nivaFor(tilstand.poeng);
+  $('#niva-navn').textContent = n.navn;
+  $('#chip-niva .ikon').textContent = n.ikon;
+}
+
+/* ---------- Navigasjon ---------- */
+let gjeldendeVisning = {type:'hjem'};
+function progressRing(prosent, fullfort){
+  const r=13, o=2*Math.PI*r, off=o*(1-prosent/100);
+  return `<svg class="ring" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+    <circle class="ring-bak" cx="17" cy="17" r="${r}" stroke-width="3.5"></circle>
+    <circle class="ring-frem" cx="17" cy="17" r="${r}" stroke-width="3.5" stroke-dasharray="${o}" stroke-dashoffset="${off}"></circle>
+    <text class="ring-tekst" x="17" y="18">${fullfort?'✓':prosent>0?Math.round(prosent)+'%':''}</text></svg>`;
+}
+function byggNav(){
+  $('#nav-faste').innerHTML = `
+    <li><button class="nav-knapp" data-vis="hjem" ${gjeldendeVisning.type==='hjem'?'aria-current="page"':''}><span class="nav-ikon" aria-hidden="true">🏠</span><span class="nav-tittel">Hjem</span></button></li>
+    <li><button class="nav-knapp" data-vis="fremgang" ${gjeldendeVisning.type==='fremgang'?'aria-current="page"':''}><span class="nav-ikon" aria-hidden="true">📊</span><span class="nav-tittel">Min fremgang</span></button></li>`;
+  $('#nav-temaer').innerHTML = TEMAER.map((t,i)=>{
+    const d = tilstand.temaer[t.id];
+    const prosent = d ? Math.round(d.besvart/t.oppgaver.length*100) : 0;
+    const aktiv = gjeldendeVisning.type==='tema' && gjeldendeVisning.id===t.id;
+    return `<li><button class="nav-knapp ${d&&d.fullfort?'fullfort':''}" data-tema="${t.id}" ${aktiv?'aria-current="page"':''}>
+      <span class="nav-ikon" aria-hidden="true">${t.ikon}</span>
+      <span class="nav-tittel">${i+1}. ${t.tittel}</span>
+      ${progressRing(Math.min(prosent,100), d&&d.fullfort)}</button></li>`;
+  }).join('');
+  document.querySelectorAll('#nav-faste .nav-knapp').forEach(b=>b.addEventListener('click',()=>{ vis({type:b.dataset.vis}); lukkMobilNav(); }));
+  document.querySelectorAll('#nav-temaer .nav-knapp').forEach(b=>b.addEventListener('click',()=>{ vis({type:'tema', id:b.dataset.tema}); lukkMobilNav(); }));
+}
+function lukkMobilNav(){
+  const t=$('#nav-toggle'), c=$('#nav-card');
+  if(getComputedStyle(t).display!=='none'){ c.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
+}
+$('#nav-toggle').addEventListener('click',()=>{
+  const c=$('#nav-card'), apen=c.classList.toggle('open');
+  $('#nav-toggle').setAttribute('aria-expanded', apen?'true':'false');
+});
+
+/* ---------- Visninger ---------- */
+function vis(v){
+  gjeldendeVisning = v;
+  byggNav();
+  if(v.type==='hjem') visHjem();
+  else if(v.type==='fremgang') visFremgang();
+  else if(v.type==='tema') visTema(v.id);
+  else if(v.type==='ovelse') startOvelse(v.id);
+  $('#hovedinnhold').focus({preventScroll:true});
+  window.scrollTo({top:0});
+}
+
+/* ---------- HJEM ---------- */
+function visHjem(){
+  const fullforte = TEMAER.filter(t=>tilstand.temaer[t.id]&&tilstand.temaer[t.id].fullfort).length;
+  $('#visning').innerHTML = `
+  <section class="hero">
+    <p class="eyebrow" style="color:var(--amber)">Norsk grammatikk · CEFR-nivå A2</p>
+    <h2>Velkommen til Grammatikkveien!</h2>
+    <p>Her øver du på all grammatikken du trenger på veien mot norskprøven A2.
+    Velg et tema, les den korte forklaringen, og øv med oppgavene.
+    Du får poeng for hvert riktig svar – og gode forklaringer når noe er feil. Lykke til!</p>
+    ${fullforte>0?`<p style="margin-top:.75rem"><strong>Du har fullført ${fullforte} av ${TEMAER.length} temaer. Godt jobbet!</strong></p>`:''}
+    <button class="knapp knapp-amber hero-knapp" id="hero-start">${fullforte>0?'Fortsett å øve':'Start med tema 1'} →</button>
+  </section>
+  <h2 class="sr-only">Alle grammatikktemaer</h2>
+  <div class="tema-grid">
+    ${TEMAER.map((t,i)=>{
+      const d=tilstand.temaer[t.id];
+      const prosent=d?Math.min(Math.round(d.besvart/t.oppgaver.length*100),100):0;
+      const mestret=d&&d.fullfort&&d.besteProsent>=80;
+      let status='Ikke startet';
+      if(mestret) status='Mestret ⭐'; else if(d&&d.fullfort) status='Fullført'; else if(prosent>0) status='Påbegynt';
+      return `<button class="tema-kort ${mestret?'mestret':''}" data-tema="${t.id}">
+        <span class="tk-topp"><span class="tk-ikon" aria-hidden="true">${t.ikon}</span><span class="tk-tittel">${i+1}. ${t.tittel}</span></span>
+        <p class="tk-besk">${t.kort}</p>
+        <span class="tk-status ${mestret?'mestret':''}">${status}</span>
+        <span class="fremdriftslinje" role="progressbar" aria-valuenow="${prosent}" aria-valuemin="0" aria-valuemax="100" aria-label="Fremdrift ${t.tittel}"><span style="width:${prosent}%"></span></span>
+      </button>`;
+    }).join('')}
+  </div>`;
+  $('#hero-start').addEventListener('click',()=>{
+    const neste = TEMAER.find(t=>!(tilstand.temaer[t.id]&&tilstand.temaer[t.id].fullfort)) || TEMAER[0];
+    vis({type:'tema', id:neste.id});
+  });
+  document.querySelectorAll('.tema-kort').forEach(k=>k.addEventListener('click',()=>vis({type:'tema', id:k.dataset.tema})));
+}
+
+/* ---------- TEMA (leksjon) ---------- */
+function visTema(id){
+  const t = TEMAER.find(x=>x.id===id);
+  const i = TEMAER.indexOf(t);
+  $('#visning').innerHTML = `
+  <article class="kort">
+    <p class="eyebrow">Tema ${i+1} av ${TEMAER.length}</p>
+    <h2>${t.ikon} ${t.tittel}</h2>
+    ${t.leksjon}
+    <div class="knapp-rad">
+      <button class="knapp knapp-primar" id="start-ovelse">Øv nå (${t.oppgaver.length} oppgaver) →</button>
+      <button class="knapp knapp-sekundar" id="til-hjem">← Tilbake til oversikten</button>
+    </div>
+  </article>`;
+  $('#start-ovelse').addEventListener('click',()=>vis({type:'ovelse', id}));
+  $('#til-hjem').addEventListener('click',()=>vis({type:'hjem'}));
+}
+
+/* ---------- ØVELSE ---------- */
+let okt = null; // {temaId, indeks, forsok, resultater[], ordSvar[]}
+function startOvelse(id){
+  const t = TEMAER.find(x=>x.id===id);
+  okt = {temaId:id, indeks:0, forsok:0, resultater:Array(t.oppgaver.length).fill(null), ordSvar:[]};
+  gjeldendeVisning = {type:'tema', id};
+  byggNav();
+  tegnOppgave();
+}
+function tegnOppgave(){
+  const t = TEMAER.find(x=>x.id===okt.temaId);
+  const o = t.oppgaver[okt.indeks];
+  okt.forsok = 0; okt.ordSvar = [];
+  const prikker = okt.resultater.map((r,i)=>`<span class="prikk ${i===okt.indeks?'aktiv':''} ${r===true?'riktig':r===false?'feil':''}"></span>`).join('');
+  let oppgaveHTML='';
+  if(o.type==='mc'){
+    oppgaveHTML = `<p class="sporsmal">${o.sp.replace('___','<span class="luke">___</span>')}</p>
+      <ul class="alt-liste">${o.alt.map((a,i)=>`<li><button class="alt-knapp" data-i="${i}"><span class="alt-bokstav" aria-hidden="true">${'ABC'[i]}</span><span>${esc(a)}</span></button></li>`).join('')}</ul>`;
+  } else if(o.type==='fyll'){
+    oppgaveHTML = `<p class="sporsmal">${o.sp.replace('___','<span class="luke">___</span>')} <span class="hint">${o.hint||''}</span></p>
+      <div class="fyll-rad">
+        <label class="sr-only" for="fyll-felt">Skriv svaret ditt</label>
+        <input class="fyll-input" id="fyll-felt" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Skriv svaret her">
+        <button class="knapp knapp-primar" id="sjekk-knapp">Sjekk svaret</button>
+      </div>`;
+  } else if(o.type==='ordre'){
+    const blandet = bland(o.ord.map((w,i)=>({w,i})));
+    oppgaveHTML = `<p class="sporsmal">${esc(o.instruks||'Sett ordene i riktig rekkefølge.')}</p>
+      <div class="ordre-svar tom" id="ordre-svar" aria-label="Setningen din"></div>
+      <div class="ordre-bank" id="ordre-bank">${blandet.map(x=>`<button class="ord-brikke" data-i="${x.i}">${esc(x.w)}</button>`).join('')}</div>
+      <div class="knapp-rad" style="margin-top:.25rem">
+        <button class="knapp knapp-primar" id="sjekk-knapp" disabled>Sjekk setningen</button>
+        <button class="knapp knapp-sekundar knapp-liten" id="tom-knapp">Begynn på nytt</button>
+      </div>`;
+  }
+  $('#visning').innerHTML = `
+  <article class="kort">
+    <div class="oppgave-status">
+      <span class="oppgave-teller">${t.ikon} ${t.tittel} · Oppgave ${okt.indeks+1} av ${t.oppgaver.length}</span>
+      <span class="prikk-rad" aria-hidden="true">${prikker}</span>
+    </div>
+    <div class="oppgave-omrade">${oppgaveHTML}</div>
+    <div class="tilbakemelding" id="tilbakemelding" role="status" aria-live="polite"></div>
+    <div class="knapp-rad" id="neste-rad" style="display:none">
+      <button class="knapp knapp-primar" id="neste-knapp">${okt.indeks+1<t.oppgaver.length?'Neste oppgave →':'Se resultatet ditt →'}</button>
+    </div>
+    <div class="knapp-rad">
+      <button class="knapp knapp-sekundar knapp-liten" id="avbryt-knapp">← Tilbake til forklaringen</button>
+    </div>
+  </article>`;
+  $('#avbryt-knapp').addEventListener('click',()=>vis({type:'tema', id:okt.temaId}));
+  if(o.type==='mc'){
+    document.querySelectorAll('.alt-knapp').forEach(b=>b.addEventListener('click',()=>svarMC(parseInt(b.dataset.i))));
+  } else if(o.type==='fyll'){
+    $('#sjekk-knapp').addEventListener('click',svarFyll);
+    $('#fyll-felt').addEventListener('keydown',e=>{ if(e.key==='Enter') svarFyll(); });
+    $('#fyll-felt').focus();
+  } else if(o.type==='ordre'){
+    document.querySelectorAll('.ord-brikke').forEach(b=>b.addEventListener('click',()=>brikkeKlikk(b)));
+    $('#sjekk-knapp').addEventListener('click',svarOrdre);
+    $('#tom-knapp').addEventListener('click',()=>{ okt.ordSvar=[]; tegnOrdreSvar(); });
+  }
+}
+function brikkeKlikk(b){
+  const i = parseInt(b.dataset.i);
+  const pos = okt.ordSvar.indexOf(i);
+  if(pos>-1) okt.ordSvar.splice(pos,1); else okt.ordSvar.push(i);
+  tegnOrdreSvar();
+}
+function tegnOrdreSvar(){
+  const t = TEMAER.find(x=>x.id===okt.temaId);
+  const o = t.oppgaver[okt.indeks];
+  const sv = $('#ordre-svar');
+  sv.classList.toggle('tom', okt.ordSvar.length===0);
+  sv.innerHTML = okt.ordSvar.map(i=>`<button class="ord-brikke i-svar" data-i="${i}" aria-label="Fjern ordet ${esc(o.ord[i])}">${esc(o.ord[i])}</button>`).join('');
+  sv.querySelectorAll('.ord-brikke').forEach(b=>b.addEventListener('click',()=>brikkeKlikk(b)));
+  document.querySelectorAll('#ordre-bank .ord-brikke').forEach(b=>{ b.disabled = okt.ordSvar.includes(parseInt(b.dataset.i)); });
+  $('#sjekk-knapp').disabled = okt.ordSvar.length!==o.ord.length;
+}
+
+/* ---------- Svarbehandling ---------- */
+function gjeldendeOppgave(){ return TEMAER.find(x=>x.id===okt.temaId).oppgaver[okt.indeks]; }
+function svarMC(valgt){
+  const o = gjeldendeOppgave();
+  document.querySelectorAll('.alt-knapp').forEach(b=>b.disabled=true);
+  const knapper = document.querySelectorAll('.alt-knapp');
+  if(valgt===o.riktig){
+    knapper[valgt].classList.add('valgt-riktig');
+    fullforOppgave(true, o.fb);
+  } else {
+    knapper[valgt].classList.add('valgt-feil');
+    knapper[o.riktig].classList.add('valgt-riktig');
+    fullforOppgave(false, o.fb, o.alt[o.riktig]);
+  }
+}
+function svarFyll(){
+  const o = gjeldendeOppgave();
+  const felt = $('#fyll-felt');
+  const svar = normaliser(felt.value);
+  if(!svar) { felt.focus(); return; }
+  const riktig = o.svar.map(normaliser).includes(svar);
+  if(riktig){
+    felt.classList.remove('feil'); felt.classList.add('riktig'); felt.disabled=true; $('#sjekk-knapp').disabled=true;
+    fullforOppgave(okt.forsok===0, o.fb, null, okt.forsok>0);
+  } else {
+    okt.forsok++;
+    if(okt.forsok<2){
+      felt.classList.add('feil');
+      visTilbakemelding('provigjen', tilfeldig(PROV_IGJEN), null, null);
+      felt.select(); felt.focus();
+    } else {
+      felt.classList.add('feil'); felt.disabled=true; $('#sjekk-knapp').disabled=true;
+      fullforOppgave(false, o.fb, o.svar[0]);
+    }
+  }
+}
+function svarOrdre(){
+  const o = gjeldendeOppgave();
+  const setning = okt.ordSvar.map(i=>o.ord[i]).join(' ');
+  const riktig = normaliser(setning)===normaliser(o.svar);
+  if(riktig){
+    document.querySelectorAll('.ord-brikke').forEach(b=>b.disabled=true);
+    $('#sjekk-knapp').disabled=true; $('#tom-knapp').disabled=true;
+    fullforOppgave(okt.forsok===0, o.fb, null, okt.forsok>0);
+  } else {
+    okt.forsok++;
+    if(okt.forsok<2){
+      visTilbakemelding('provigjen', tilfeldig(PROV_IGJEN)+' Trykk på «Begynn på nytt» og bygg setningen igjen.', null, null);
+    } else {
+      document.querySelectorAll('.ord-brikke').forEach(b=>b.disabled=true);
+      $('#sjekk-knapp').disabled=true; $('#tom-knapp').disabled=true;
+      fullforOppgave(false, o.fb, o.svar);
+    }
+  }
+}
+function fullforOppgave(forsteForsokRiktig, forklaring, riktigSvar, andreForsok){
+  const d = temaData(okt.temaId);
+  const erNyBesvarelse = okt.resultater[okt.indeks]===null;
+  okt.resultater[okt.indeks] = !!(forsteForsokRiktig || andreForsok);
+  if(erNyBesvarelse) d.besvart = Math.min(d.besvart+1, TEMAER.find(x=>x.id===okt.temaId).oppgaver.length);
+  if(forsteForsokRiktig){
+    tilstand.poeng += 10; tilstand.streak += 1;
+    tilstand.besteStreak = Math.max(tilstand.besteStreak, tilstand.streak);
+    d.riktigForsteForsok += 1;
+    visTilbakemelding('riktig', tilfeldig(ROS)+' <span class="feir" aria-hidden="true">🎉</span> +10 poeng', forklaring, null);
+  } else if(andreForsok){
+    tilstand.poeng += 5;
+    visTilbakemelding('riktig', 'Riktig på andre forsøk – godt jobbet! +5 poeng', forklaring, null);
+  } else {
+    tilstand.streak = 0;
+    visTilbakemelding('feil', tilfeldig(TROST), forklaring, riktigSvar);
+  }
+  lagreTilstand(); oppdaterTavle(); byggNav();
+  $('#neste-rad').style.display='flex';
+  $('#neste-knapp').addEventListener('click', nesteOppgave);
+  $('#neste-knapp').focus();
+}
+function visTilbakemelding(type, tittel, forklaring, riktigSvar){
+  const t = $('#tilbakemelding');
+  t.className = 'tilbakemelding vis '+type;
+  t.innerHTML = `<span class="tm-tittel">${tittel}</span>
+    ${riktigSvar?`<p class="tm-forklaring"><strong>Riktig svar:</strong> ${esc(riktigSvar)}</p>`:''}
+    ${forklaring?`<p class="tm-forklaring">💡 ${forklaring}</p>`:''}`;
+}
+function nesteOppgave(){
+  const t = TEMAER.find(x=>x.id===okt.temaId);
+  if(okt.indeks+1 < t.oppgaver.length){ okt.indeks++; tegnOppgave(); window.scrollTo({top:0}); }
+  else visFullfort();
+}
+
+/* ---------- Fullført tema ---------- */
+function visFullfort(){
+  const t = TEMAER.find(x=>x.id===okt.temaId);
+  const d = temaData(okt.temaId);
+  const antallRiktig = okt.resultater.filter(r=>r===true).length;
+  const prosent = Math.round(antallRiktig/t.oppgaver.length*100);
+  d.fullfort = true;
+  d.besteProsent = Math.max(d.besteProsent, prosent);
+  lagreTilstand(); byggNav();
+  const neste = TEMAER[TEMAER.indexOf(t)+1];
+  let melding, ikon;
+  if(prosent>=80){ ikon='🏆'; melding='Fantastisk! Du mestrer dette temaet. Du er klar for neste steg på veien mot A2!'; }
+  else if(prosent>=50){ ikon='💪'; melding='Godt jobbet! Du kan mye allerede. Øv en gang til, så sitter det enda bedre.'; }
+  else { ikon='🌱'; melding='Bra at du øver! Les forklaringen en gang til og prøv på nytt – det er slik vi lærer.'; }
+  $('#visning').innerHTML = `
+  <article class="kort fullfort-skjerm">
+    <span class="stor-ikon" aria-hidden="true">${ikon}</span>
+    <h3>Tema fullført: ${t.tittel}</h3>
+    <p>${melding}</p>
+    <div class="resultat-tall">
+      <div class="resultat-boks"><span class="rt-tall">${antallRiktig}/${t.oppgaver.length}</span><span class="rt-navn">Riktige svar</span></div>
+      <div class="resultat-boks"><span class="rt-tall">${prosent}%</span><span class="rt-navn">Resultat</span></div>
+      <div class="resultat-boks"><span class="rt-tall">${tilstand.poeng}</span><span class="rt-navn">Poeng totalt</span></div>
+    </div>
+    <div class="knapp-rad" style="justify-content:center">
+      ${prosent<80?`<button class="knapp knapp-amber" id="prov-igjen">Øv på temaet igjen</button>`:''}
+      ${neste?`<button class="knapp knapp-primar" id="neste-tema">Neste tema: ${neste.tittel} →</button>`:''}
+      <button class="knapp knapp-sekundar" id="se-fremgang">Se min fremgang</button>
+    </div>
+  </article>`;
+  const pi=$('#prov-igjen'); if(pi) pi.addEventListener('click',()=>vis({type:'ovelse', id:t.id}));
+  const nt=$('#neste-tema'); if(nt) nt.addEventListener('click',()=>vis({type:'tema', id:neste.id}));
+  $('#se-fremgang').addEventListener('click',()=>vis({type:'fremgang'}));
+}
+
+/* ---------- MIN FREMGANG ---------- */
+function visFremgang(){
+  const n = nivaFor(tilstand.poeng);
+  const nesteNiva = NIVAER.find(x=>x.grense>tilstand.poeng);
+  const fullforte = TEMAER.filter(t=>tilstand.temaer[t.id]&&tilstand.temaer[t.id].fullfort).length;
+  const mestrede = TEMAER.filter(t=>{const d=tilstand.temaer[t.id]; return d&&d.fullfort&&d.besteProsent>=80;}).length;
+  $('#visning').innerHTML = `
+  <article class="kort">
+    <p class="eyebrow">Resultatmodul</p>
+    <h2>📊 Min fremgang</h2>
+    <div class="niva-banner">
+      <span class="nb-ikon" aria-hidden="true">${n.ikon}</span>
+      <div>
+        <div class="nb-navn">Nivå: ${n.navn}</div>
+        <div class="nb-info">${nesteNiva ? `Du har ${tilstand.poeng} poeng. Du trenger ${nesteNiva.grense - tilstand.poeng} poeng til for å bli «${nesteNiva.navn}».` : `Du har ${tilstand.poeng} poeng og har nådd høyeste nivå. Imponerende!`}</div>
+      </div>
+    </div>
+    <div class="resultat-tall" style="justify-content:flex-start">
+      <div class="resultat-boks"><span class="rt-tall">${tilstand.poeng}</span><span class="rt-navn">Poeng</span></div>
+      <div class="resultat-boks"><span class="rt-tall">${tilstand.besteStreak}</span><span class="rt-navn">Beste rekke 🔥</span></div>
+      <div class="resultat-boks"><span class="rt-tall">${fullforte}/${TEMAER.length}</span><span class="rt-navn">Temaer fullført</span></div>
+      <div class="resultat-boks"><span class="rt-tall">${mestrede}</span><span class="rt-navn">Temaer mestret</span></div>
+    </div>
+    <h3>Resultater per tema</h3>
+    <div style="overflow-x:auto">
+    <table class="fremgang-tabell">
+      <caption class="sr-only">Oversikt over fremgangen din i alle grammatikktemaer</caption>
+      <thead><tr><th scope="col">Tema</th><th scope="col">Oppgaver besvart</th><th scope="col">Beste resultat</th><th scope="col">Status</th></tr></thead>
+      <tbody>
+      ${TEMAER.map((t,i)=>{
+        const d = tilstand.temaer[t.id];
+        const mestret = d&&d.fullfort&&d.besteProsent>=80;
+        let merke = '<span class="status-merke ikke">Ikke startet</span>';
+        if(mestret) merke='<span class="status-merke mestret">Mestret ⭐</span>';
+        else if(d&&d.fullfort) merke='<span class="status-merke fullfort">Fullført</span>';
+        else if(d&&d.besvart>0) merke='<span class="status-merke pabegynt">Påbegynt</span>';
+        return `<tr><td>${t.ikon} ${i+1}. ${t.tittel}</td>
+          <td>${d?Math.min(d.besvart,t.oppgaver.length):0} av ${t.oppgaver.length}</td>
+          <td>${d&&d.fullfort?d.besteProsent+'%':'–'}</td>
+          <td>${merke}</td></tr>`;
+      }).join('')}
+      </tbody>
+    </table>
+    </div>
+    <div class="knapp-rad">
+      <button class="knapp knapp-primar" id="fortsett-ovelse">Fortsett å øve →</button>
+      <button class="knapp knapp-sekundar knapp-liten" id="nullstill">Nullstill all fremgang</button>
+    </div>
+  </article>`;
+  $('#fortsett-ovelse').addEventListener('click',()=>{
+    const neste = TEMAER.find(t=>!(tilstand.temaer[t.id]&&tilstand.temaer[t.id].fullfort)) || TEMAER[0];
+    vis({type:'tema', id:neste.id});
+  });
+  $('#nullstill').addEventListener('click',()=>{
+    if(confirm('Er du sikker? All fremgangen din blir slettet.')){
+      tilstand = {poeng:0, streak:0, besteStreak:0, temaer:{}};
+      lagreTilstand(); oppdaterTavle(); vis({type:'fremgang'});
+    }
+  });
+}
+
+/* ---------- Start ---------- */
+oppdaterTavle();
+byggNav();
+vis({type:'hjem'});
+</script>
+</body>
+</html>
